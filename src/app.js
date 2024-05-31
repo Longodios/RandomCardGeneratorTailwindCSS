@@ -61,17 +61,32 @@ const randomNumbersPoker = () => {
 const countDown = () => {
     let contador = 10;
     let count10Seconds = document.querySelector("#countDownToTen");
-    setInterval(() => {
-        
+    let selectedButton = document.querySelector("#resetCountdown");
+    let intervalId;
+
+    const startInterval = () => {
+        intervalId = setInterval(() => {
+            count10Seconds.textContent = contador;
+            contador--;
+            if (contador < 0) {
+                contador = 10;
+                initFunctions();
+            }
+        }, 1000);
+    };
+
+    selectedButton.addEventListener("click", function() {
+        contador = 10;
         count10Seconds.textContent = contador;
-        contador--;
-        if(contador < 0 ){
-            contador = 10;
-            initFunctions();
-            
+        if (intervalId) {
+            clearInterval(intervalId);
         }
-    }, 1000);
+        startInterval();
+    });
+
+    startInterval();
 }
+
 
 const setDimensionsCard = () => {
     
@@ -83,7 +98,7 @@ const setDimensionsCard = () => {
     selectedCard.style.height = selectedHeightInput + "rem";
      //TODO
 //   Resetear inputs
-    // Hacer fork al proyecto
+    
 }
 
 
