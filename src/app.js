@@ -82,7 +82,7 @@ const countDown = () => {
             clearInterval(intervalId);
         }
         startInterval();
-    });
+    });/*  */
 
     startInterval();
 }
